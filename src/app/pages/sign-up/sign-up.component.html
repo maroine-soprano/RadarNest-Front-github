@@ -1,0 +1,77 @@
+<header class="header">
+  <span>◆ RadarNest</span>
+</header>
+
+<main class="main">
+  <div class="login-container">
+    <h1>Create new account</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <input
+        type="email"
+        class="input-field"
+        placeholder="username"
+        aria-label="username"
+        formControlName="username"
+      />
+      @if (
+        signUpForm.get("username")?.touched &&
+        signUpForm.get("username")?.invalid
+      ) {
+        @if (signUpForm.get("username")?.errors?.["required"]) {
+          <small>Username is required.</small>
+        }
+        @if (signUpForm.get("username")?.errors?.["minlength"]) {
+          <small>Username must be at least 3 characters.</small>
+        }
+      }
+
+      <input
+        type="password"
+        class="input-field"
+        placeholder="Password"
+        aria-label="password"
+        formControlName="password"
+      />
+      @if (
+        signUpForm.get("password")?.touched &&
+        signUpForm.get("password")?.invalid
+      ) {
+        @if (signUpForm.get("password")?.errors?.["required"]) {
+          <small>Password is required.</small>
+        }
+        @if (signUpForm.get("password")?.errors?.["minlength"]) {
+          <small>Password must be at least 3 characters.</small>
+        }
+      }
+      <input
+        type="password"
+        class="input-field"
+        placeholder="Confirm Password"
+        aria-label="password"
+        formControlName="confirmPassword"
+      />
+      @if (
+        signUpForm.get("confirmPassword")?.touched &&
+        signUpForm.get("confirmPassword")?.invalid
+      ) {
+        @if (signUpForm.get("confirmPassword")?.errors?.["required"]) {
+          <small>Confirm Password is required.</small>
+        }
+        @if (signUpForm.get("confirmPassword")?.errors?.["minlength"]) {
+          <small>Confirm Password must be at least 3 characters.</small>
+        }
+        @if (signUpForm.errors?.["passwordMismatch"]) {
+          <small>Passwords do not match.</small>
+        }
+      }
+      <button class="btn" type="submit" [disabled]="signUpForm.invalid">
+        <span class="envelope-icon"></span>
+        Create
+      </button>
+      @if (isError) {
+        <small class="error">An error occurred.</small>
+      }
+    </form>
+    <a [routerLink]="'/' + pages.Login" class="other-options">← Login</a>
+  </div>
+</main>

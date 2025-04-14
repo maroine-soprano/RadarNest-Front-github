@@ -1,0 +1,110 @@
+.container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: lighter;
+  color: #666;
+}
+
+input,
+select {
+  padding: 10px 14px;
+  border: 1px solid #acb2b3;
+  font-size: 14px;
+  background-color: #fafafa;
+  transition: border-color 0.2s;
+  width: 100%;
+  height: 35px;
+}
+
+input:focus,
+select:focus {
+  border: 1px solid #9ea2a5;
+  outline: none;
+}
+
+input::placeholder {
+  color: #636668 !important;
+}
+
+.group-inpts-a,
+.group-inpts-b {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 30px;
+  &.group-inpts-a {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 40px;
+  }
+}
+
+.btn-loading {
+  align-self: center;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  mat-spinner {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  button {
+    padding: 12px 20px;
+    background-color: #111827;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+}
+
+.ai-result {
+  background: #fafafa;
+  padding: 24px;
+  border: 1px solid #e6e6e6;
+  p {
+    font-size: 13.6px;
+    color: black;
+    line-height: 1.9;
+    text-align: left;
+    white-space: pre-line;
+  }
+  h2 {
+    font-size: 15px;
+    margin-bottom: -20px;
+  }
+}
+
+small {
+  margin-top: 5px;
+  color: #f44336;
+}
+
+button:disabled {
+  background-color: rgba(239, 239, 239, 0.3) !important;
+  color: rgba(16, 16, 16, 0.3) !important;
+  border-color: rgba(118, 118, 118, 0.3) !important;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #f44336 !important;
+}

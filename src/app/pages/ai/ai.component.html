@@ -1,0 +1,192 @@
+<div class="header-section">
+  <h1 class="header-section__title">
+    Roarketing strategist
+    <p class="simple-p">
+      Roarketing is your personal AI assistant for creating tailored
+      marketing strategies. Simply enter details like device type, country,
+      temperature, and ad platform to generate campaigns customized for your
+      audience and context.
+    </p>
+  </h1>
+  <svg
+    class="header-svg"
+    width="300"
+    height="300"
+    viewBox="0 0 300 300"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Lion body - black -->
+    <ellipse cx="150" cy="180" rx="60" ry="65" fill="black" />
+
+    <!-- Lion head - black -->
+    <circle cx="150" cy="100" r="55" fill="black" />
+
+    <!-- Lion mane -->
+    <path
+      d="M150,100 m-65,0 a65,65 0 1,0 130,0 a65,65 0 1,0 -130,0"
+      fill="black"
+      stroke="black"
+      stroke-width="15"
+      stroke-dasharray="5,10"
+    />
+
+    <!-- Lion ears - outer black part -->
+    <path d="M110,65 L95,40 L125,55 Z" fill="black" />
+    <path d="M190,65 L205,40 L175,55 Z" fill="black" />
+
+    <!-- Lion ears - inner pink part -->
+    <path d="M112,63 L102,45 L122,56 Z" fill="#cc9999" />
+    <path d="M188,63 L198,45 L178,56 Z" fill="#cc9999" />
+
+    <!-- Lion eyes - white with pupils -->
+    <circle cx="130" cy="90" r="10" fill="white" />
+    <circle cx="170" cy="90" r="10" fill="white" />
+    <circle cx="130" cy="90" r="5" fill="black" />
+    <circle cx="170" cy="90" r="5" fill="black" />
+    <circle cx="128" cy="88" r="2" fill="white" />
+    <circle cx="168" cy="88" r="2" fill="white" />
+
+    <!-- Lion nose -->
+    <path d="M150,105 L140,115 L160,115 Z" fill="#333333" />
+
+    <!-- Lion mouth - cute smile -->
+    <path
+      d="M140,125 Q150,135 160,125"
+      fill="none"
+      stroke="white"
+      stroke-width="2"
+    />
+
+    <!-- Lion paws holding sign -->
+    <circle cx="100" cy="200" r="15" fill="black" />
+    <circle cx="200" cy="200" r="15" fill="black" />
+
+    <!-- Sign -->
+    <rect
+      x="90"
+      y="140"
+      width="120"
+      height="80"
+      stroke="black"
+      stroke-width="4"
+      fill="white"
+    />
+
+    <!-- Robot icon inside sign -->
+    <g transform="translate(120, 160) scale(0.8)">
+      <!-- Robot head -->
+      <rect x="10" y="0" width="30" height="25" rx="3" fill="black" />
+
+      <!-- Robot antennas -->
+      <line x1="20" y1="0" x2="20" y2="-5" stroke="black" stroke-width="2" />
+      <circle cx="20" cy="-7" r="2" fill="black" />
+      <line x1="30" y1="0" x2="30" y2="-5" stroke="black" stroke-width="2" />
+      <circle cx="30" cy="-7" r="2" fill="black" />
+
+      <!-- Robot eyes -->
+      <circle cx="20" cy="10" r="3" fill="white" />
+      <circle cx="30" cy="10" r="3" fill="white" />
+
+      <!-- Robot mouth -->
+      <rect x="18" y="18" width="14" height="2" fill="white" />
+
+      <!-- Robot body -->
+      <rect x="15" y="25" width="20" height="15" fill="black" />
+
+      <!-- Robot arms -->
+      <line x1="15" y1="30" x2="5" y2="25" stroke="black" stroke-width="2" />
+      <line x1="35" y1="30" x2="45" y2="25" stroke="black" stroke-width="2" />
+
+      <!-- Robot legs -->
+      <line x1="20" y1="40" x2="15" y2="50" stroke="black" stroke-width="3" />
+      <line x1="30" y1="40" x2="35" y2="50" stroke="black" stroke-width="3" />
+    </g>
+  </svg>
+</div>
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="group-inpts-a">
+      <div class="form-group">
+        <label for="device">Device</label>
+        <input type="text" id="device" formControlName="device" />
+        @if (form.get("device")?.invalid && form.get("device")?.touched) {
+          <small> Device is required and must be at least 3 characters. </small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="deviceBrand">Device brand</label>
+        <input type="text" id="deviceBrand" formControlName="deviceBrand" />
+        @if (
+          form.get("deviceBrand")?.invalid && form.get("deviceBrand")?.touched
+        ) {
+          <small>
+            Device brand is required and must be at least 3 characters.
+          </small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="deviceModel">Device model</label>
+        <input type="text" id="deviceModel" formControlName="deviceModel" />
+        @if (
+          form.get("deviceModel")?.invalid && form.get("deviceModel")?.touched
+        ) {
+          <small>
+            Device model is required and must be at least 3 characters.
+          </small>
+        }
+      </div>
+    </div>
+    <div class="group-inpts-b">
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" id="country" formControlName="country" />
+        @if (form.get("country")?.invalid && form.get("country")?.touched) {
+          <small>
+            Country is required and must be at least 3 characters.
+          </small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="temperature">Temperature</label>
+        <input type="text" id="temperature" formControlName="temperature" />
+        @if (
+          form.get("temperature")?.invalid && form.get("temperature")?.touched
+        ) {
+          <small>
+            Temperature is required and must be at least 3 characters.
+          </small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="adsPlatform">Ads platform</label>
+        <input type="text" id="adsPlatform" formControlName="adsPlatform" />
+        @if (
+          form.get("adsPlatform")?.invalid && form.get("adsPlatform")?.touched
+        ) {
+          <small>
+            Ads platform is required and must be at least 3 characters.
+          </small>
+        }
+      </div>
+    </div>
+    <div class="btn-loading">
+      <button type="submit" [disabled]="form.invalid || isLoading">
+        Submit
+      </button>
+      @if (isLoading) {
+        <mat-spinner></mat-spinner>
+      }
+    </div>
+  </form>
+</div>
+@if (errorMessage) {
+  <span class="app-error">
+    {{ errorMessage }}
+  </span>
+}
+@if ((strategy$ | async)?.strategy?.choices; as choices) {
+  <div class="ai-result">
+    <h2>Strategy</h2>
+    <p [innerHTML]="choices[0].text"></p>
+  </div>
+}

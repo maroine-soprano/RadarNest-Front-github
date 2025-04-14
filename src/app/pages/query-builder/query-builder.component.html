@@ -1,0 +1,182 @@
+<div class="header-section">
+  <h1 class="header-section__title">
+    Query builDOG
+    <p class="simple-p">
+      Query builDOG showcases the Query Builder, allowing you to select from a wide
+      range of attributes to craft highly customized queries. Refine and organize these
+      attributes to uncover deeper patterns and insights in your marketing data.
+    </p>
+  </h1>
+  <svg
+    class="header-svg"
+    width="300"
+    height="300"
+    viewBox="0 0 300 300"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Dog body - black -->
+    <ellipse cx="150" cy="180" rx="60" ry="65" fill="black" />
+
+    <!-- Dog head - black -->
+    <circle cx="150" cy="100" r="55" fill="black" />
+
+    <!-- Dog ears - floppy (outer black part) -->
+    <path d="M100,70 C90,40 110,20 130,60" fill="black" />
+    <path d="M200,70 C210,40 190,20 170,60" fill="black" />
+
+    <!-- Dog ears - inner pink part -->
+    <path d="M105,65 C98,45 112,30 125,58" fill="#cc9999" />
+    <path d="M195,65 C202,45 188,30 175,58" fill="#cc9999" />
+
+    <!-- Dog eyes - white with pupils -->
+    <circle cx="130" cy="90" r="10" fill="white" />
+    <circle cx="170" cy="90" r="10" fill="white" />
+    <circle cx="130" cy="90" r="5" fill="black" />
+    <circle cx="170" cy="90" r="5" fill="black" />
+    <circle cx="128" cy="88" r="2" fill="white" />
+    <circle cx="168" cy="88" r="2" fill="white" />
+
+    <!-- Dog nose -->
+    <ellipse cx="150" cy="115" rx="10" ry="7" fill="#333333" />
+
+    <!-- Dog mouth - cute smile -->
+    <path
+      d="M140,125 Q150,135 160,125"
+      fill="none"
+      stroke="white"
+      stroke-width="2"
+    />
+
+    <!-- Dog tongue -->
+    <path d="M150,130 Q150,140 145,138 Q140,140 150,130" fill="#ff9999" />
+
+    <!-- Dog paws holding sign -->
+    <circle cx="100" cy="200" r="15" fill="black" />
+    <circle cx="200" cy="200" r="15" fill="black" />
+
+    <!-- Sign -->
+    <rect
+      x="90"
+      y="140"
+      width="120"
+      height="80"
+      stroke="black"
+      stroke-width="4"
+      fill="white"
+    />
+
+    <!-- Search/Magnifying Glass icon inside sign -->
+    <g transform="translate(120, 160) scale(0.8)">
+      <!-- Magnifying glass circle -->
+      <circle
+        cx="20"
+        cy="20"
+        r="15"
+        fill="none"
+        stroke="black"
+        stroke-width="3"
+      />
+
+      <!-- Magnifying glass handle -->
+      <line
+        x1="30"
+        y1="30"
+        x2="45"
+        y2="45"
+        stroke="black"
+        stroke-width="4"
+        stroke-linecap="round"
+      />
+    </g>
+  </svg>
+</div>
+<section
+  cdkDropList
+  #attibutesToIgnoreSection="cdkDropList"
+  [cdkDropListData]="attibutesToIgnore"
+  [cdkDropListConnectedTo]="[attibutesToSendSection]"
+  (cdkDropListDropped)="drop($event)"
+  class="panel"
+>
+  <h2>Available Attibutes</h2>
+  <div class="parameters">
+    @for (attr of attibutesToIgnore; track attr.attribute) {
+      <div class="parameter" cdkDrag>{{ attr.label }}</div>
+    }
+  </div>
+</section>
+
+<section
+  cdkDropList
+  #attibutesToSendSection="cdkDropList"
+  [cdkDropListData]="attibutesToSend"
+  [cdkDropListConnectedTo]="[attibutesToIgnoreSection]"
+  (cdkDropListDropped)="drop($event)"
+  class="drop-area"
+>
+  <h2>Selected Attibutes</h2>
+  @if (attibutesToSend.length === 0) {
+    <div class="drop-zone">
+      <p>Drag parameters here to define table headers</p>
+    </div>
+  }
+  <div class="parameters">
+    @for (item of attibutesToSend; track item.attribute) {
+      <div class="parameter" cdkDrag>{{ item.label }}</div>
+    }
+  </div>
+</section>
+
+<section class="filters-section">
+  <h2>Filters</h2>
+  <button class="button button--light" (click)="addFilter()">Add Filter</button>
+  <form [formGroup]="queryBuilderForm">
+    <div formArrayName="filters">
+      @for (group of filters.controls; let i = $index; track i) {
+        <div [formGroupName]="i" class="filter-row">
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="key">
+              @for (att of allAttributes; track att.label) {
+                <mat-option [value]="att.attribute">{{ att.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="operator">
+              @for (operation of operations; track operation.label) {
+                <mat-option [value]="operation.value">{{
+                  operation.label
+                }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="value" placeholder="Search" />
+            <button mat-icon-button matSuffix disabled>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button (click)="removeFilter(i)" class="remove-filter">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </form>
+</section>
+<button (click)="search()" class="button button--dark">Search</button>
+@if (errorMessage || (filters.invalid && searchClicked)) {
+  <span class="app-error">
+    {{ filters.invalid ? "fill all field" : errorMessage }}
+  </span>
+}
+@if (isLoading) {
+  <mat-spinner></mat-spinner>
+}
+<app-table
+  [data]="data$ | async"
+  [displayedColumns]="attributeToSendKeys"
+></app-table>

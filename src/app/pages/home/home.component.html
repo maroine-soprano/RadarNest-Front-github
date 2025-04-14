@@ -1,0 +1,78 @@
+<div class="header-section">
+  <h1 class="header-section__title">
+    AnalytiCAT
+    <p class="simple-p">
+      Our analytiCAT is crafted to immerse you immediately in a world of actionable
+      insights. Discover a sleek, intuitive
+      dashboard that presents a concise overview of your marketing performance,
+      showcasing key metrics and real-time data to steer your decisions.
+    </p>
+  </h1>
+  <svg class="header-svg" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cat body - black -->
+    <ellipse cx="150" cy="180" rx="55" ry="65" fill="black" />
+
+    <!-- Cat head - black -->
+    <circle cx="150" cy="100" r="55" fill="black" />
+
+    <!-- Cat ears -->
+    <polygon points="110,65 130,25 150,65" fill="black" />
+    <polygon points="190,65 170,25 150,65" fill="black" />
+
+    <!-- Inner ears - darker pink -->
+    <polygon points="115,65 130,35 145,65" fill="#cc9999" />
+    <polygon points="185,65 170,35 155,65" fill="#cc9999" />
+
+    <!-- Cat eyes - white with pupils -->
+    <circle cx="130" cy="90" r="10" fill="white" />
+    <circle cx="170" cy="90" r="10" fill="white" />
+    <circle cx="130" cy="90" r="5" fill="black" />
+    <circle cx="170" cy="90" r="5" fill="black" />
+    <circle cx="128" cy="88" r="2" fill="white" />
+    <circle cx="168" cy="88" r="2" fill="white" />
+
+    <!-- Cat nose -->
+    <path d="M150,105 L145,115 L155,115 Z" fill="#ff9999" />
+
+    <!-- Cat mouth - cute smile -->
+    <path d="M140,120 Q150,130 160,120" fill="none" stroke="white" stroke-width="2" />
+
+    <!-- Cat whiskers - white for visibility -->
+    <line x1="110" y1="110" x2="80" y2="100" stroke="white" stroke-width="1.5" />
+    <line x1="110" y1="115" x2="80" y2="115" stroke="white" stroke-width="1.5" />
+    <line x1="110" y1="120" x2="80" y2="130" stroke="white" stroke-width="1.5" />
+
+    <line x1="190" y1="110" x2="220" y2="100" stroke="white" stroke-width="1.5" />
+    <line x1="190" y1="115" x2="220" y2="115" stroke="white" stroke-width="1.5" />
+    <line x1="190" y1="120" x2="220" y2="130" stroke="white" stroke-width="1.5" />
+
+    <!-- Cat paws holding sign -->
+    <circle cx="100" cy="200" r="15" fill="black" />
+    <circle cx="200" cy="200" r="15" fill="black" />
+
+    <!-- Sign -->
+    <rect x="90" y="140" width="120" height="80" stroke="black" stroke-width="4" fill="white" />
+
+    <!-- Chart icon inside sign -->
+    <g transform="translate(120, 160) scale(0.8)">
+      <!-- Bar chart icon -->
+      <rect x="0" y="20" width="10" height="20" fill="black" />
+      <rect x="20" y="10" width="10" height="30" fill="black" />
+      <rect x="40" y="0" width="10" height="40" fill="black" />
+      <!-- Chart frame -->
+      <line x1="0" y1="0" x2="0" y2="40" stroke="black" stroke-width="2" />
+      <line x1="0" y1="40" x2="50" y2="40" stroke="black" stroke-width="2" />
+    </g>
+  </svg>
+
+</div>
+<div class="dashboard">
+  <div class="grid">
+    @for (chart of charts; track chart.id) {
+      <div class="chart-card">
+        <h2 class="chart-title">{{ chart.title }}</h2>
+        <canvas [id]="chart.id"></canvas>
+      </div>
+    }
+  </div>
+</div>

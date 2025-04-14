@@ -1,1 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
+@use './variables' as vars;
+@use '@angular/material' as mat;
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: vars.$font-family;
+  color: vars.$text-color;
+  background-color: vars.$background-color;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+// Main Content
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// Header Section
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  height: 42px !important;
+  .mat-mdc-form-field-infix {
+    padding-top: 10px !important;
+    mat-select {
+      font-size: 14px !important;
+    }
+  }
+}
+
+.mat-mdc-select-panel {
+  background: white !important;
+  mat-option {
+    font-size: 14px !important;
+  }
+  .mdc-text-field--filled {
+    border-radius: 0 !important;
+  }
+}
+
+input {
+  font-size: 14px !important;
+}
+
+input::placeholder {
+  color: vars.$text-color !important;
+  opacity: 1 !important;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--dark {
+    background-color: #000;
+    color: #fff;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  &--light {
+    background-color: vars.$secondary-color;
+    color: vars.$text-color;
+  }
+
+  &--icon {
+    padding: 0.5rem;
+    background-color: transparent;
+
+    &:hover {
+      background-color: vars.$secondary-color;
+    }
+  }
+}
+
+:root {
+  @include mat.progress-spinner-overrides((
+    active-indicator-color: #505050,
+  ));
+}
+
+:root .export-btn {
+  @include mat.progress-spinner-overrides((
+    active-indicator-color: #fff,
+  ));
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 0px !important;
+}
+
+.app-error {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  margin: 31px 0;
+  background: #ffe3e3;
+  color: #e64747;
+  padding: 15px;
+  width: 100%;
+}
+
+.simple-p {
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.header-svg {
+  height: fit-content !important;
+}

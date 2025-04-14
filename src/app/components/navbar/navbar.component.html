@@ -1,0 +1,26 @@
+<nav class="sub-nav">
+  <ul class="sub-nav__list">
+    <li
+      class="sub-nav__item"
+      [routerLink]="pages.Home"
+      routerLinkActive="sub-nav__item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Analytics
+    </li>
+    <li
+      class="sub-nav__item"
+      [routerLink]="pages.QueryBuilder"
+      routerLinkActive="sub-nav__item--active"
+    >
+      Search
+    </li>
+    <li
+      class="sub-nav__item"
+      [routerLink]="pages.AI"
+      routerLinkActive="sub-nav__item--active"
+    >
+      AI ✨
+    </li>
+  </ul>
+</nav>
