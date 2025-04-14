@@ -8,7 +8,7 @@ export class RedirectIfAuthenticatedGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    const token = localStorage.getItem('access_token');
+    const token = sessionStorage.getItem('access_token');
     if (token) {
       this.router.navigate(['/']);
       return false;

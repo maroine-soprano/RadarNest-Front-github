@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('access_token');
+    const token = sessionStorage.getItem('access_token');
     const isLoginOrSignUpRequest =
       request.url.includes(Pages.Login) || request.url.includes(Pages.SignUp);
 

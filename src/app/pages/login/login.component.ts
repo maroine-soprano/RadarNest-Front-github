@@ -37,7 +37,7 @@ export class LoginComponent {
       this.accountService.login(this.loginForm.value).subscribe({
         next: (response) => {
           this.isError = false;
-          localStorage.setItem('access_token', response.access_token); // Store token
+          sessionStorage.setItem('access_token', response.access_token); // Store token
           this.router.navigate(['/' + Pages.Home]);
         },
         error: (err) => {
